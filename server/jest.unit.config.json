@@ -1,0 +1,6 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": ["**/__tests__/unit/*.test.ts"],
+  "verbose": true
+}

@@ -1,0 +1,6 @@
+{
+  "preset": "ts-jest",
+  "testEnvironment": "node",
+  "testMatch": ["**/__tests__/integration/*.test.ts"],
+  "verbose": true
+}
