@@ -244,3 +244,5 @@ Selected the following dependencies to enhance development efficiency and applic
     [Vitest](https://vitest.dev/): A Vite-native unit test framework. Fast and reuse Vite config.
 
     [Adobe React Spectrum](https://react-spectrum.adobe.com/): Recommended collection of React components that implement Adobe's design system, ensuring a consistent and accessible user experience.
+
+    [Playwright](https://playwright.dev/): Reliable end-to-end testing for cross-browser modern web apps. It has rich API and develop-friendly testing and debugging features.
