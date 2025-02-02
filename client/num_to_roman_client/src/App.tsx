@@ -18,13 +18,14 @@ function App() {
     <Provider theme={defaultTheme} colorScheme={colorScheme}>
       <View position="relative" height="100vh">
         <Switch
+          aria-label="Toggle Dark Mode"
           position="absolute"
           top="10%"
           right="10%"
           isSelected={colorScheme === "dark"}
           onChange={toggleColorScheme}
         />
-        <HomePage/>
+        <HomePage />
       </View>
     </Provider>
   );

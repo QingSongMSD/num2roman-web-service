@@ -40,7 +40,9 @@ export const HomePage = () => {
       }
     } catch (error) {
       setRomanNumeral("");
-      setError("Unknown error");
+      setError(
+        "Unable to connect to the server."
+      );
     }
   };
 
