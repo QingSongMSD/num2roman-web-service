@@ -1,12 +1,12 @@
 import { Router } from "express";
-import { errorMeg, validateQuery, numToRoman } from "../utils/num_to_roman";
+import { ERROR_MSG, validateQuery, numToRoman } from "../utils/num_to_roman";
 
 const romannumeral = Router();
 
 romannumeral.get("/", (req, res) => {
   const query = req.query.query as string;
   if (!validateQuery(query)) {
-    res.status(400).send({message: errorMeg});
+    res.status(400).send({ message: ERROR_MSG });
     return;
   }
   try {

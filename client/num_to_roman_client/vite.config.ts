@@ -9,6 +9,18 @@ import { glob } from "glob";
 export default defineConfig({
   plugins: [react()],
   test: {
+    exclude: [
+      "**/node_modules/**",
+      "**/dist/**",
+      "**/e2e/**", // Exclude the 'e2e' directory from tests
+    ],
+    coverage: {
+      exclude: [
+        "**/node_modules/**",
+        "**/dist/**",
+        "**/e2e/**", // Exclude the 'e2e' directory from coverage
+      ],
+    },
     // support `describe`, `test` etc. globally,
     // so you don't need to import them every time
     globals: true,

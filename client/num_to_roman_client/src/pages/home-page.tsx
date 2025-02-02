@@ -8,6 +8,8 @@ import {
 } from "@adobe/react-spectrum";
 import { useEffect, useState } from "react";
 
+export const UNKNOWN_ERROR = "Unknown error";
+
 export const inputError =
   "Please provide an integer number between 1 and 3999.";
 
@@ -36,13 +38,11 @@ export const HomePage = () => {
       } else {
         const error = await response.json();
         setRomanNumeral("");
-        setError(error?.message || "Unknown error");
+        setError(error?.message || UNKNOWN_ERROR);
       }
     } catch (error) {
       setRomanNumeral("");
-      setError(
-        "Unable to connect to the server."
-      );
+      setError(UNKNOWN_ERROR);
     }
   };
 
@@ -65,6 +65,7 @@ export const HomePage = () => {
           Roman numeral converter
         </Heading>
         <TextField
+          data-testid="input-field"
           minHeight={100}
           label="Enter a number"
           value={value}
@@ -74,6 +75,7 @@ export const HomePage = () => {
           errorMessage={inputError}
         />
         <Button
+          data-testid="convert-button"
           variant="primary"
           onPress={handleConvert}
           isDisabled={!validateInput() || !value}
@@ -82,12 +84,16 @@ export const HomePage = () => {
         </Button>
         <View maxWidth="300">
           {romanNumeral && (
-            <Text>
+            <Text data-testid="output-field">
               <strong>Roman Numeral: </strong>
               {romanNumeral}
             </Text>
           )}
-          {error && <Text UNSAFE_style={{ color: "red" }}>{error}</Text>}
+          {error && (
+            <Text data-testid="server-error" UNSAFE_style={{ color: "red" }}>
+              {error}
+            </Text>
+          )}
         </View>
       </Flex>
     </Flex>

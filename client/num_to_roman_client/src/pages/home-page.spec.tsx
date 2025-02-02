@@ -1,5 +1,5 @@
 import { fireEvent, render, screen } from "@testing-library/react";
-import { HomePage, inputError } from "./home-page";
+import { HomePage, inputError, UNKNOWN_ERROR } from "./home-page";
 import {
   afterEach,
   beforeEach,
@@ -79,9 +79,10 @@ describe("HomePage", () => {
     expect(await screen.findByText("Invalid input")).toBeTruthy();
   });
 
-  it("should display unkown error when the server failed without error message", async () => {
+  it("should display unknown error when the server failed without error message", async () => {
     (global.fetch as ReturnType<typeof vi.fn>).mockResolvedValue({
       ok: false,
+      text: async () => UNKNOWN_ERROR,
     });
 
     render(<HomePage />);
@@ -89,10 +90,10 @@ describe("HomePage", () => {
     fireEvent.change(textField, { target: { value: "123" } });
     const button = screen.getByRole("button", { name: /convert/i });
     fireEvent.click(button);
-    expect(await screen.findByText("Unknown error")).toBeTruthy();
+    expect(await screen.findByText(UNKNOWN_ERROR)).toBeTruthy();
   });
 
-  it("should display unkown error when network fails", async () => {
+  it("should display unknown error  when network fails", async () => {
     (global.fetch as ReturnType<typeof vi.fn>).mockRejectedValue(new Error());
 
     render(<HomePage />);
@@ -100,6 +101,6 @@ describe("HomePage", () => {
     fireEvent.change(textField, { target: { value: "123" } });
     const button = screen.getByRole("button", { name: /convert/i });
     fireEvent.click(button);
-    expect(await screen.findByText("Unknown error")).toBeTruthy();
+    expect(await screen.findByText(UNKNOWN_ERROR)).toBeTruthy();
   });
 });

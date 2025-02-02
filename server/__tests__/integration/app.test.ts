@@ -1,6 +1,6 @@
-import request  from "supertest";
+import request from "supertest";
 import app from "../../src/app";
-import { errorMeg } from "../../src/utils/num_to_roman";
+import { ERROR_MSG } from "../../src/utils/num_to_roman";
 
 describe("GET /", () => {
   test("should return 200 status", async () => {
@@ -14,13 +14,13 @@ describe("GET /romannumeral", () => {
   test("should return 400 status for missing query", async () => {
     const response = await request(app).get("/romannumeral");
     expect(response.status).toBe(400);
-    expect(response.text).toBe(errorMeg);
+    expect(JSON.parse(response.text).message).toBe(ERROR_MSG);
   });
 
   test("should return 400 status for invalid query", async () => {
     const response = await request(app).get("/romannumeral?query=abc");
     expect(response.status).toBe(400);
-    expect(response.text).toBe(errorMeg);
+    expect(JSON.parse(response.text).message).toBe(ERROR_MSG);
   });
 
   test("should return 200 status for valid query", async () => {

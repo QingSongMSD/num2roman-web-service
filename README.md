@@ -112,24 +112,62 @@ Once both the backend and frontend are running:
 To ensure the app works as expected, we've implemented unit and integration tests.
 
 1. **Backend**
- - Unit Tests: Run using Jest.
+ - Unit Tests: Run using `Jest` to test individual functions in isolation. 
  ```bash
  cd server
  npm run test
  ```
- - Integration Tests: Run using Jest.
+ - Integration Tests: Run using `Jest` to test interactions between components with real HTTP calls.
  ```bash
  cd server
  npm run test:integration
  ```
 
 2. **Frontend**
- - Unit Tests and Mock Http Tests: Run use Vitest.
+ - Unit Tests: Run use `Vitest` to test individual UI page.
+
+ - Mock HTTP Tests: Run use `Vitest` with simulated HTTP responses to ensure they handle various scenarios correctly.
  ```bash
+ # To run both
  cd client/
  cd num_to_roman_client/
  npm run test
  ```
+
+3. **End-to-End** 
+ - End-to-End (E2E) Tests: Run use `Playwright` to simulate real user interactions, testing the entire web app flow from the frontend to the backend.
+ ```bash
+ # Make sure to start your server
+ cd server
+ npm run dev
+ ```
+
+ ```bash
+ # Make sure to start your client
+ cd client/
+ cd num_to_roman_client/
+ npm run dev
+ ```
+
+ ```bash
+ # Run E2E test at client
+ cd client/
+ cd num_to_roman_client/
+ npm run test:e2e
+ ```
+ You will get test result
+ ```bash
+ Running 4 tests using 4 workers
+  4 passed (6.7s)
+ ```
+ To see your HTML test report
+ ```bash
+ npm run test:e2e:report
+ ```
+ You will get the test report like
+ ![Test Report](./images/playwright_test_report.png)
+ You could also open interactive UI Mode to re-run your E2E test and debug. More details follow [Playwright Doc](https://playwright.dev/).
+ ![UI Mode](./images/playwright_test_ui.png)
 
 
 ## Project Structure
@@ -145,6 +183,7 @@ roman-numeral-converter/
 │   │   ├── main.tsx
 │   │   └── ...
 │   ├── tests/
+│   ├── e2e/
 │   ├── index.html
 │   ├── package.json
 │   └── ...
