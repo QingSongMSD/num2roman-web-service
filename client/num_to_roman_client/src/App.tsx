@@ -1,30 +1,34 @@
-import { useState } from "react";
-import {
-  defaultTheme,
-  View,
-  Switch,
-  Provider,
-} from "@adobe/react-spectrum";
+import { useEffect, useState } from "react";
+import { defaultTheme, View, Provider } from "@adobe/react-spectrum";
 import { HomePage } from "./pages/home-page";
 
-
 function App() {
-  const [colorScheme, setColorScheme] = useState<"light" | "dark">("light");
-    const toggleColorScheme = () => {
-      setColorScheme(colorScheme === "light" ? "dark" : "light");
+  const isDarkMode = () => {
+    return (
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+    );
+  };
+
+  const [colorScheme, setColorScheme] = useState<"dark" | "light">(
+    isDarkMode() ? "dark" : "light"
+  );
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+    console.log(mediaQuery);
+    const handleChange = (e: { matches: any }) => {
+      setColorScheme(e.matches ? "dark" : "light");
     };
+    mediaQuery.addEventListener("change", handleChange);
+    return () => {
+      mediaQuery.removeEventListener("change", handleChange);
+    };
+  }, []);
 
   return (
     <Provider theme={defaultTheme} colorScheme={colorScheme}>
       <View position="relative" height="100vh">
-        <Switch
-          aria-label="Toggle Dark Mode"
-          position="absolute"
-          top="10%"
-          right="10%"
-          isSelected={colorScheme === "dark"}
-          onChange={toggleColorScheme}
-        />
         <HomePage />
       </View>
     </Provider>

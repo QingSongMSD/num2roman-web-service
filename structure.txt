@@ -1,0 +1,29 @@
+roman-numeral-converter/
+├── client/num_to_roman_client
+│   ├── src/
+│   │   ├── pages/
+│   │   │   ├── home-page.tsx
+│   │   │   ├── home-page.spec.tsx
+│   │   ├── App.tsx
+│   │   ├── main.tsx
+│   │   └── ...
+│   ├── tests/
+│   ├── index.html
+│   ├── package.json
+│   └── ...
+└── server/
+    ├── src/
+    │   ├── routes/
+    │   │   ├── romannumeral.ts
+    │   ├── utils/
+    │   │   ├── num_to_roman.ts
+    │   ├── app.ts
+    │   ├── index.ts
+    │   └── ...
+    ├── __tests__/
+    │   ├── unit/
+        │   ├── num_to_roman.test.ts
+    │   ├── integration/
+        │   ├── app.test.ts
+    ├── package.json
+    └── ...
