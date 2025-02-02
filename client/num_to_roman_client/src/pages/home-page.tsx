@@ -8,7 +8,7 @@ import {
 } from "@adobe/react-spectrum";
 import { useEffect, useState } from "react";
 
-const inputError = "Please provide an integer number between 1 and 3999.";
+export const inputError = "Please provide an integer number between 1 and 3999.";
 
 export const HomePage = () => {
   const [value, setValue] = useState("");
@@ -27,7 +27,13 @@ export const HomePage = () => {
     const response = await fetch(
       `http://localhost:8080/romannumeral?query=${value}`
     );
+
+    console.log("resoponse", response);  
+
     const data = await response.json();
+
+    console.log("data", data);
+
     if (response.status === 200) {
       setRomanNumeral(data.output);
     } else if (response.status === 400) {
