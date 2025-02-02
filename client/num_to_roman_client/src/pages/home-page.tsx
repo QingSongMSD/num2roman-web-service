@@ -8,7 +8,8 @@ import {
 } from "@adobe/react-spectrum";
 import { useEffect, useState } from "react";
 
-export const inputError = "Please provide an integer number between 1 and 3999.";
+export const inputError =
+  "Please provide an integer number between 1 and 3999.";
 
 export const HomePage = () => {
   const [value, setValue] = useState("");
@@ -24,22 +25,20 @@ export const HomePage = () => {
   };
 
   const handleConvert = async () => {
-    const response = await fetch(
-      `http://localhost:8080/romannumeral?query=${value}`
-    );
-
-    console.log("resoponse", response);  
-
-    const data = await response.json();
-
-    console.log("data", data);
-
-    if (response.status === 200) {
-      setRomanNumeral(data.output);
-    } else if (response.status === 400) {
-      setRomanNumeral("");
-      setError(data.message);
-    } else {
+    try {
+      const response = await fetch(
+        `http://localhost:8080/romannumeral?query=${value}`
+      );
+      if (response.ok) {
+        const data = await response.json();
+        setRomanNumeral(data.output);
+        setError("");
+      } else {
+        const error = await response.json();
+        setRomanNumeral("");
+        setError(error?.message || "Unknown error");
+      }
+    } catch (error) {
       setRomanNumeral("");
       setError("Unknown error");
     }
@@ -60,7 +59,9 @@ export const HomePage = () => {
         top="20%"
         left="20%"
       >
-        <Heading data-testid="homepage-heading" level={1}>Roman numeral converter</Heading>
+        <Heading data-testid="homepage-heading" level={1}>
+          Roman numeral converter
+        </Heading>
         <TextField
           minHeight={100}
           label="Enter a number"
