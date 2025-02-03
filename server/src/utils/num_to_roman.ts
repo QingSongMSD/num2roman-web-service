@@ -1,11 +1,13 @@
+// Error message for invalid input.
 export const ERROR_MSG =
   "Invalid input. Please provide an integer number between 1 and 3999.";
 
-// check if the query only contains digits and can be successfully parsed into an integer
+// Check if the query only contains digits and can be successfully parsed into an integer
 export const validateQuery = (query: string): boolean => {
   return /^\d+$/.test(query) && !isNaN(parseInt(query));
 };
 
+// Converts an integer to its Roman numeral representation.
 export const numToRoman = (num: number): string => {
   if (num < 1 || num > 3999) {
     throw new Error(ERROR_MSG);

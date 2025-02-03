@@ -3,6 +3,7 @@ import { defaultTheme, View, Provider } from "@adobe/react-spectrum";
 import { HomePage } from "./pages/home-page";
 
 function App() {
+  // Determines if the user's system preference is set to dark mode.
   const isDarkMode = () => {
     return (
       window.matchMedia &&

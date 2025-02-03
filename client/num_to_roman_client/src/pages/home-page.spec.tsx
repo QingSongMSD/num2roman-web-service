@@ -1,13 +1,6 @@
 import { fireEvent, render, screen } from "@testing-library/react";
 import { HomePage, inputError, UNKNOWN_ERROR } from "./home-page";
-import {
-  afterEach,
-  beforeEach,
-  describe,
-  expect,
-  it,
-  vi,
-} from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 global.fetch = vi.fn();
 

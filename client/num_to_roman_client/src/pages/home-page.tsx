@@ -8,17 +8,20 @@ import {
 } from "@adobe/react-spectrum";
 import { useEffect, useState } from "react";
 
+// Error message displayed when an unknown error occurs.
 export const UNKNOWN_ERROR = "Unknown error";
 
+// Error message displayed for invalid input.
 export const inputError =
   "Please provide an integer number between 1 and 3999.";
 
+// HomePage component provides a user interface to convert integers to Roman numerals.
 export const HomePage = () => {
   const [value, setValue] = useState("");
   const [romanNumeral, setRomanNumeral] = useState("");
   const [error, setError] = useState("");
 
-  // The input could be empty or any integer value between 1 and 3999.
+  // Validates the user's input to ensure it is an integer between 1 and 3999.
   const validateInput = () => {
     if (!value) {
       return true;
@@ -26,6 +29,7 @@ export const HomePage = () => {
     return /^\d+$/.test(value) && Number(value) >= 1 && Number(value) <= 3999;
   };
 
+  // Handles the conversion of the input value to a Roman numeral by making a request to the backend API.
   const handleConvert = async () => {
     try {
       const response = await fetch(

@@ -1,7 +1,6 @@
 import { test, expect } from "@playwright/test";
 
 // Make sure to start your server before running the tests
-// to start your server run `npm run dev` in the server directory
 test.describe("e2e tests for Roman numeral converter", () => {
   test.beforeEach(async ({ page }) => {
     await page.goto("http://localhost:5173/");
