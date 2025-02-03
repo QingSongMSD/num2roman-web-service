@@ -43,12 +43,14 @@ cd num2roman-web-service
     ```bash
     cd server
     npm install
+    npm run build
     ```
     **Frontend**
     ```bash
     cd client/
     cd num_to_roman_client/
     npm install
+    npm run build
     ```
 
 3. **Run the Application**
@@ -56,7 +58,7 @@ cd num2roman-web-service
     **Backend** 
     ```bash
     cd server
-    npm run dev
+    npm run start
     ```
     You will get console message `Server running on port 8080`.
 
@@ -64,12 +66,12 @@ cd num2roman-web-service
     ```bash
     cd client/
     cd num_to_roman_client/
-    npm run dev
+    npm run preview
     ```
     Your will get message like
     ```bash
     VITE v6.0.11  ready in 352 ms
-    ➜  Local:   http://localhost:5173/
+    ➜  Local:   http://localhost:4173/
     ➜  Network: use --host to expose
     ➜  press h + enter to show help
     ```
@@ -80,7 +82,7 @@ Once both the backend and frontend are running:
 
 1. **Frontend** 
 
-    1. Open your browser and navigate to http://localhost:5173/. 
+    1. Open your browser and navigate to http://localhost:4173/. 
 
     2. You will see the web app page. 
     ![Light Theme](images/light_theme.png)
@@ -139,14 +141,14 @@ To ensure the app works as expected, we've implemented unit and integration test
     ```bash
     # Make sure to start your server
     cd server
-    npm run dev
+    npm run start
     ```
 
     ```bash
     # Make sure to start your client
     cd client/
     cd num_to_roman_client/
-    npm run dev
+    npm run preview
     ```
 
     ```bash

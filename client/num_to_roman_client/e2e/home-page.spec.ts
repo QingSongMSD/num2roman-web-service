@@ -3,7 +3,10 @@ import { test, expect } from "@playwright/test";
 // Make sure to start your server before running the tests
 test.describe("e2e tests for Roman numeral converter", () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("http://localhost:5173/");
+    // if you are running the end to end to end tests locally, you can use the below URL
+    // await page.goto("http://localhost:5173");
+    
+    await page.goto("http://localhost:4173");
   });
 
   test("should display the correct components, convert button disabled without input", async ({
